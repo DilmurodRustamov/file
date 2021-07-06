@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">>
+<head>
+    <meta charset="UTF-8">
+    <title>Olcha.uz</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css} "/>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4" th:each="product: ${productList}">
+            <div class="card">
+                <img class="card-img-top img-fluid" th:src="@{'/'+${product.getId()}}">
+                <h3 th:text="${product.name}"></h3>
+                <h3 th:text="${product.price}"></h3>
+
+                <form th:action="@{'/one/'+ ${product.getId()}}">
+                    <button type="submit" data-toggle="modal" data-targer="#exampleModal" class="btn btn-primary">more ...</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4" th:each="product: ${productList}">
+                        <div class="card">
+                            <img class="card-img-top img-fluid" th:src="@{'/'+${product.getId()}}">
+                            <h3 th:text="${product.name}"></h3>
+                            <h3 th:text="${product.price}"></h3>
+                            <a type="button" href="" class="btn btn-primary">more...</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
